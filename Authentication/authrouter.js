@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+const user = require('./authmodel');
 
 function makeToken(user){
     const payload ={
@@ -24,20 +25,20 @@ router.post('/register', (req, res) => {
     })
     .then(err => {
         console.log(err);
-        res.status(500).json({message: 'sorry cannot register'});
+        res.status(500).json({message:'sorry cannot register'});
     });
 })
 
 router.post('/login', (req, res) => {
     const {username, password} = req.body;
 
-    user.findByUsername({username, password: bcryptjs.hashSync(password, 9)})
+    user.findByUsername({username, password: bcrypt.hashSync(password, 9)})
     .then(id =>{
-        if(user && bcryptjs.conmpareSync(password, user.password)){
+        if(user.password && bcrypt.compareSync(password,user.password)){
             const token = makeToken(user);
-        res.status(200).json({message: 'you successfully logged in', token});
+        res.status(201).json({message: 'you successfully logged in', token});
         } else{
-            res.status(400).json({message: 'hmm, something is wrong, please try again', id});
+            res.status(400).json({message:'hmm, something is wrong, please try again', id});
         }
     })
 
