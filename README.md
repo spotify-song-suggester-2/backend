@@ -49,8 +49,7 @@ _How-Tos_ gives users a site where they can add and edit their own how-tos and e
   {
     username: "dannybb";
     password: "nestor12!";
-    email: "an@email.com";
-    usertype: "Content Creator";
+    
   }
   ```
 
@@ -71,11 +70,11 @@ _How-Tos_ gives users a site where they can add and edit their own how-tos and e
 
 | Endpoint        | Request Type | Request                            | Response                           |
 | --------------- | ------------ | ---------------------------------- | ---------------------------------- |
-| /api/howtos     | GET          | requires a token                   | [{howtos}]                         |
-| /api/howtos/:id | GET          | requires a token                   | {instruction: string, number: int} |
-| /api/howtos     | POST         | {name: "", desc: "", user_id: int} | no return at the moment            |
-| /api/howtos/:id | PUT          | {name: "", desc: "", user_id: int} | no return at the moment            |
-| /api/howtos/:id | DELETE       | {}                                 | no return at the moment            |
+| /api/songs     | GET          | requires a token                   | [{howtos}]                         |
+| /api/songs/:id | GET          | requires a token                   | {instruction: string, number: int} |
+| /api/songs     | POST         | {artist: "", song: "", user_id: int} | no return at the moment            |
+| /api/songs/:id | PUT          | {artist: "", song: "", user_id: int} | no return at the moment            |
+| /api/songs/:id | DELETE       | {}                                 | no return at the moment            |
 
 ### Examples:
 
@@ -111,14 +110,14 @@ GET
 
   ```javascript
   {
-    name: "howto howto"
-    desc: "this will show you howto howto"
+    artist: "name of artist"
+    song: "name of song"
     user_id: 3
     Headers{ Authorization: token};
   }
   ```
 
-  /api/howtos/:id
+  /api/song/:id
   PUT
 
 - JWT protected (header) :heavy_check_mark:
@@ -126,14 +125,14 @@ GET
 
   ```javascript
   {
-    name: "howto howto"
-    desc: "this will show you howto howto"
+    artist: "name of artist"
+    song: "name of song"
     user_id: 3
     Headers{ Authorization: token};
   }
   ```
 
-  /api/howtos/:id
+  /api/song/:id
   DELETE
 
 - JWT protected (header) :heavy_check_mark:
