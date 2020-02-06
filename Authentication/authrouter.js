@@ -12,7 +12,7 @@ function makeToken(user){
         expiresIn: '1d',
     };
 
-    return jwt.sign(payload,process.env.JWT_SECRET || 'jadoijfoijojt', options);
+    return jwt.sign(payload,process.env.JWT_SECRET || 'oaijdjoijgoija', options);
 
 }
 
