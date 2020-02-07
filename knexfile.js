@@ -48,6 +48,28 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations'
     }
+  },
+
+  testing:{
+    client: 'sqlite3',
+    useNullAsDefault: true,
+    connection: {
+      // location and name of DB
+      filename: ':memory:'
+    },
+    migrations: {
+      // location of migrations for the DB
+      directory: './database/migrations'
+    },
+    seeds:{
+      //location of seed data for the DB
+      directory: './database/seeds'
+    },
+    pool:{
+      afterCreate: (conn, done)=>{
+        conn.run('PRAGMA foreign_keys = ON',done)
+      }
+    }
   }
 
 };
