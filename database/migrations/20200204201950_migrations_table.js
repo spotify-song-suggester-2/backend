@@ -19,7 +19,7 @@ exports.up = function(knex) {
           
           songs.string('artist_name')
           .notNullable();
-          songs.string('track_id')
+          songs.integer('track_id')
           .notNullable()
           .unique();
           songs.integer('track_index_num')
@@ -36,6 +36,6 @@ exports.up = function(knex) {
   
   exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists('users')
-    return knex.schema.dropTableIfExists('songs')
+    .dropTableIfExists('Songs')
   };
   
